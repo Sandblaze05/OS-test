@@ -1,0 +1,27 @@
+name: Test on Every Commit
+
+on:
+  push:
+    branches:
+      - "**"   # Run on every branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build buildenv -t testenv
+
+      - name: Run build in Docker container
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/root/env testenv make build-x86_64
+
+      - name: Upload resulting ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-iso
+          path: dist/x86_64/kernel.iso
