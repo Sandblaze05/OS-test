@@ -20,6 +20,7 @@ This ensures a consistent build setup and easy cross-compilation.
 
 - The kernel's entry point is written in assembly (`src/impl/x86_64/boot/main.asm`).
 - The multiboot2 header (`src/impl/x86_64/boot/header.asm`) allows GRUB to recognize and load the kernel.
+- The (`src/impl/kernel/main.c`) file allows for printing text on the screen using a custom (`print.h`) header file.
 
 ## Build Process
 
