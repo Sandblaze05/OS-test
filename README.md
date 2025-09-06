@@ -44,17 +44,12 @@ This ensures a consistent build setup and easy cross-compilation.
    docker build buildenv -t <your-tag>
    ```
 
-2. Run the build environment:
+2. Run the build environment and execute Makefile:
    ```sh
-   docker run --rm -it -v ${pwd}:/root/env <your-tag>
+   docker run --rm -v ${pwd}:/root/env <your-tag> make build-x86_64
    ```
 
-3. Execute the pipeline using makefile:
-   ```sh
-   make build-x86_64
-   ```
-
-4. The resulting bootable ISO will be in `dist/x86_64/kernel.iso`.
+3. The resulting bootable ISO will be in `dist/x86_64/kernel.iso`.
 
 5. Boot the kernel iso using qemu:
    ```sh
